@@ -30,7 +30,7 @@ const Home = () => {
         setSearchAttempted(true);
 
         try {
-            const response = await fetch(`http://localhost:3000/api/search?q=${searchTerm}`);
+            const response = await fetch(`${import.meta.env.VITE_INSTANCE_URL}/api/search?q=${searchTerm}`);
             const data = await response.json();
             setResults(data.files);
         } catch (error) {
