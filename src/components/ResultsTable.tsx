@@ -1,9 +1,14 @@
 import { File } from '../types';
 
+const enum SORTING_KEYS {
+    NAME = 'name',
+    LAST_UPDATED_TIME = 'lastUpdatedTime'
+}
+
 interface ResultsTableProps {
     results: File[];
     sortConfig: { key: string; direction: string };
-    handleSort: (key: "name" | "lastUpdatedTime") => void;
+    handleSort: (key: SORTING_KEYS) => void;
 }
 
 const ResultsTable = ({ results, sortConfig, handleSort }: ResultsTableProps) => {
@@ -14,15 +19,15 @@ const ResultsTable = ({ results, sortConfig, handleSort }: ResultsTableProps) =>
                     <tr className="bg-teal-100">
                         <th
                             className="px-4 py-3 text-left text-teal-800 font-semibold cursor-pointer hover:bg-teal-200"
-                            onClick={() => handleSort("name")}
+                            onClick={() => handleSort(SORTING_KEYS.NAME)}
                         >
-                            Name {sortConfig.key === "name" ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
+                            Name {sortConfig.key === SORTING_KEYS.NAME ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
                         </th>
                         <th
                             className="px-4 py-3 text-left text-teal-800 font-semibold cursor-pointer hover:bg-teal-200"
-                            onClick={() => handleSort("lastUpdatedTime")}
+                            onClick={() => handleSort(SORTING_KEYS.LAST_UPDATED_TIME)}
                         >
-                            Last Modified Date {sortConfig.key === "lastUpdatedTime" ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
+                            Last Modified Date {sortConfig.key === SORTING_KEYS.LAST_UPDATED_TIME ? (sortConfig.direction === "asc" ? "▲" : "▼") : ""}
                         </th>
                     </tr>
                 </thead>
